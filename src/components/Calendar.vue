@@ -1,68 +1,165 @@
 <template>
-  <v-row>
+
+  <v-row class="fill-height">
     <v-col>
-      <v-sheet height="400">
-        TEST
+      <v-sheet height="64">
+        <v-toolbar
+          flat
+        >
+          <v-btn
+            outlined
+            class="mr-4"
+            color="grey darken-2"
+            @click="setToday"
+          >
+            Today
+          </v-btn>
+          <v-btn
+            fab
+            text
+            small
+            color="grey darken-2"
+            @click="prev"
+          >
+            <v-icon small>
+              mdi-chevron-left
+            </v-icon>
+          </v-btn>
+          <v-btn
+            fab
+            text
+            small
+            color="grey darken-2"
+            @click="next"
+          >
+            <v-icon small>
+              mdi-chevron-right
+            </v-icon>
+          </v-btn>
+          <v-toolbar-title v-if="$refs.calendar">
+            {{ $refs.calendar.title }}
+          </v-toolbar-title>
+          <v-spacer></v-spacer>
+        </v-toolbar>
+      </v-sheet>
+      <!-- <v-sheet height="600"> -->
+      <v-sheet >
         <v-calendar
           ref="calendar"
-          :now="today"
-          :value="today"
-          :events="events"
+          v-model="focus"
           color="primary"
-          type="week"
+          type="category"
+          category-show-all
+          :categories="categories"
+          :events="events"
+          :event-color="getEventColor"
+          @change="fetchEvents"
+          @click:event="dateClick"
         ></v-calendar>
       </v-sheet>
     </v-col>
   </v-row>
 </template>
-
 <script>
-export default {
-  data: () => ({
-    today: "2019-01-08",
-    events: [
-      {
-        name: "Weekly Meeting",
-        start: "2019-01-07 09:00",
-        end: "2019-01-07 10:00",
+  export default {
+    data: () => ({
+      focus: '',
+      events: [
+        {
+          name: "Test",
+          start: '2021-04-25 09:00',
+          end: '2021-04-25 13:00',
+          color: "blue",
+          category: 'HellFest',
+          // action: ()=> this.events.push({
+          //   name: this.name,
+          //   start: this.start,
+          //   end: this.end,
+          //   color: this.color,
+          //   category: 'Mon Programme',
+          // })
+        },
+         {
+          name: "Test2",
+          start: '2021-04-25 12:00',
+          end: '2021-04-25 14:00',
+          color: "blue",
+          category: 'HellFest',
+        }
+      ],
+      // colors: ['blue', 'indigo', 'deep-purple', 'cyan', 'green', 'orange', 'grey darken-1'],
+      // names: ['Meeting', 'Holiday', 'PTO', 'Travel', 'Event', 'Birthday', 'Conference', 'Party'],
+      // // categories: ['John Smith', 'Tori Walker'],
+      categories: ['Mon Programme', 'HellFest'],
+    }),
+    
+    mounted () {
+      this.$refs.calendar.checkChange()
+    },
+    methods: {
+      getEventColor (event) {
+        return event.color
       },
-      {
-        name: `Thomas' Birthday`,
-        start: "2019-01-10",
+      setToday () {
+        this.focus = ''
       },
-      {
-        name: "Mash Potatoes",
-        start: "2019-01-09 12:30",
-        end: "2019-01-09 15:30",
+      prev () {
+        this.$refs.calendar.prev()
       },
-    ],
-  }),
-  mounted() {
-    this.$refs.calendar.scrollToTime("08:00");
-  },
-};
-</script>
+      next () {
+        this.$refs.calendar.next()
+      },
+      dateClick (item) {
+        for (let i = 0; i < this.events.length; i++) {
+          // Si l'évènement sélectionné est déja enregistré dans mon programme
+          if (this.events[i].name == item.event.name && this.events[i].category.includes("Mon Programme")) {
+            // Si l'évènement est selectionné depuis mon programme, je le retire
+            if(item.event.category.includes("Mon Programme")){
+              this.events.splice(i,1);
+            }
+            return;
+          }   
+        };
 
-<style scoped>
-.my-event {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  border-radius: 2px;
-  background-color: #1867c0;
-  color: #ffffff;
-  border: 1px solid #1867c0;
-  font-size: 12px;
-  padding: 3px;
-  cursor: pointer;
-  margin-bottom: 1px;
-  left: 4px;
-  margin-right: 8px;
-  position: relative;
-}
-.my-event.with-time {
-  position: absolute;
-  right: 4px;
-  margin-right: 0px;
-}
-</style>
+        this.events.push({
+            name: item.event.name ,
+            start: item.event.start,
+            end: item.event.end,
+            color: item.event.color,
+            category: 'Mon Programme'
+        });
+      }
+      
+      // fetchEvents ({ start, end }) {
+      //   const events = []
+
+      //   const min = new Date(`${start.date}T00:00:00`)
+      //   const max = new Date(`${end.date}T23:59:59`)
+      //   const days = (max.getTime() - min.getTime()) / 86400000
+      //   const eventCount = this.rnd(days, days + 20)
+
+      //   for (let i = 0; i < eventCount; i++) {
+      //     const allDay = this.rnd(0, 3) === 0
+      //     const firstTimestamp = this.rnd(min.getTime(), max.getTime())
+      //     const first = new Date(firstTimestamp - (firstTimestamp % 900000))
+      //     const secondTimestamp = this.rnd(2, allDay ? 288 : 8) * 900000
+      //     const second = new Date(first.getTime() + secondTimestamp)
+
+      //     events.push({
+      //       name: this.names[this.rnd(0, this.names.length - 1)],
+      //       start: first,
+      //       end: second,
+      //       color: this.colors[this.rnd(0, this.colors.length - 1)],
+      //       timed: !allDay,
+      //       category: this.categories[this.rnd(0, this.categories.length - 1)],
+      //     })
+      //   }
+
+      //   this.events = events
+      // },
+      // rnd (a, b) {
+      //   return Math.floor((b - a + 1) * Math.random()) + a
+      // },
+    },
+  }
+</script>
