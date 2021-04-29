@@ -197,8 +197,10 @@ function share() {
   navigator
     .share({
       title: "Partagez votre programme",
-      text: "Voici mon programme pour le festival, joins toi à moi !",
-      url: "https://zeldu.com/",
+      text:
+        "Voici mon programme pour le festival, joins toi à moi \n \n \n Copiez le texte suivant et insérez le dans l'application : \n \n" +
+        JSON.stringify(FilterMyEvents(store.state.events)),
+      //url: JSON.stringify(FilterMyEvents(store.state.events)),
     })
     .then(() => console.log("Programme partagé"))
     .catch((error) =>
