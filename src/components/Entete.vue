@@ -21,16 +21,16 @@ export default {
 </script>
 
 <style>
-@media (min-width: 1850px)  {
+@media (min-width: 1850px) {
   #dropdown-small {
     display: none;
   }
-  .v-app-bar.v-app-bar--fixed{
+  .v-app-bar.v-app-bar--fixed {
     display: flex;
     justify-content: center;
   }
 }
-@media (max-width: 1850px)  {
+@media (max-width: 1850px) {
   #dropdown-wide {
     display: none;
   }

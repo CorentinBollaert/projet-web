@@ -1,16 +1,13 @@
 <template>
-
   <div class="text-center">
     <!-- écran large -->
     <div id="dropdown-wide">
-      <v-btn v-for="(item, index) in items"
-          :key="index"
-          @click="item.action"
+      <v-btn v-for="(item, index) in items" :key="index" @click="item.action"
         >{{ item.title }}
       </v-btn>
     </div>
     <div id="dropdown-small">
-      <v-menu offset-y >
+      <v-menu offset-y>
         <template v-slot:activator="{ on, attrs }">
           <v-btn color="primary" dark v-bind="attrs" v-on="on">
             Gérer mon planning
@@ -30,7 +27,6 @@
             </v-list-item-action>
           </v-list-item>
         </v-list>
-        
       </v-menu>
     </div>
   </div>
@@ -111,27 +107,30 @@ export default {
 };
 
 function deleteCategory() {
-  var CategoryName= prompt(
-    "Quelle catégorie souhaitez vous supprimez ?",
-  );
+  var CategoryName = prompt("Quelle catégorie souhaitez vous supprimez ?");
 
   if (CategoryName == null || CategoryName == "") {
     return;
   }
 
-  var eventCopy = []
-  var categoryCopy = []
+  var eventCopy = [];
+  var categoryCopy = [];
 
   for (let i = 0; i < store.state.events.length; i++) {
-    if (store.state.events[i].category?.toLowerCase() != CategoryName.toLowerCase()) {
-      eventCopy.push(store.state.events[i])
-    } 
+    if (
+      store.state.events[i].category?.toLowerCase() !=
+      CategoryName.toLowerCase()
+    ) {
+      eventCopy.push(store.state.events[i]);
+    }
   }
 
   for (let i = 0; i < store.state.categories.length; i++) {
-    if (store.state.categories[i]?.toLowerCase() != CategoryName.toLowerCase()) {
-      categoryCopy.push(store.state.categories[i])
-    } 
+    if (
+      store.state.categories[i]?.toLowerCase() != CategoryName.toLowerCase()
+    ) {
+      categoryCopy.push(store.state.categories[i]);
+    }
   }
   store.state.events = eventCopy;
   store.state.categories = categoryCopy;

@@ -49,17 +49,17 @@
 </template>
 
 <script>
-  export default {
-    name: 'TextFields',
-    data: () => ({
-      initial: 'Initial Value',
-      type: null,
-      withLabel: null,
-      inline: null,
-      number: null,
-      textarea: null,
-      autogrow: null,
-      disabled: null
-    })
-  }
+export default {
+  name: "TextFields",
+  data: () => ({
+    initial: "Initial Value",
+    type: null,
+    withLabel: null,
+    inline: null,
+    number: null,
+    textarea: null,
+    autogrow: null,
+    disabled: null,
+  }),
+};
 </script>

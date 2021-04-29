@@ -17,7 +17,7 @@ export default {
 
   components: {
     Calendar,
-    Entete
+    Entete,
     // HelloWorld
   },
 
