@@ -56,7 +56,6 @@ export default {
       {
         title: "Fullscreen",
         action: () => {
-          console.log("BTN1"),
             // document.getElementById("app").requestFullscreen();
             document
               .getElementsByClassName("row fill-height")[0]
@@ -72,19 +71,33 @@ export default {
       {
         title: "Partager mon programme",
         action: () => {
-          console.log("BTN2"), share();
+          share();
         },
       },
       {
         title: "Importer un planning",
         action: () => {
-          console.log("BTN3");
+          importPlanning();
         },
       },
       {
         title: "Supprimer une categorie",
         action: () => {
           console.log("BTN3"), deleteProg();
+        },
+      },
+      {
+        title: "Enregistrer localement",
+        action: () => {
+          window.localStorage.setItem("localStorageEvents", JSON.stringify(store.state.events));
+          window.localStorage.setItem("localStorageEventsCategory", JSON.stringify(store.state.categories));
+        },
+      },
+      {
+        title: "Charger localement",
+        action: () => {
+          store.state.events = JSON.parse(window.localStorage.getItem("localStorageEvents"));
+          store.state.categories = JSON.parse(window.localStorage.getItem("localStorageEventsCategory"));
         },
       },
       {
@@ -134,8 +147,8 @@ function importPlanning() {
           color: e.color,
           category: CategoryName
       });
-
   });
+
 }
 
 //Fonction pour copié dans le presse papier

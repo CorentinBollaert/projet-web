@@ -48,6 +48,13 @@ export default {
 </script>
 
 <style>
+@media (max-width: 640px)  {
+  .text-center {
+    display: none;
+    background-color: red;
+  }
+}
+
 v-app-bar {
   flex-direction: row;
   align-items: center;
