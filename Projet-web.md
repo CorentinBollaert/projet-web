@@ -17,4 +17,4 @@ Différentes fonctions sont disponibles sur l'application :
     7. La possibilité de supprimé certains programmes dont nous n'avons plus besoin.
     8. La possibilité de charger et décharger localement les programmes afin de les récupérer plus tard.
    
-Pour utiliser l'application, il suffit juste de s'y connecté, pas besoin de ressources extérieures pour l'utiliser. 2 évènements sont disponibles sur la journée du 29 avril, cliquez dessus afin de les ajoutez à votre programme. Les accès aux autres fonctionnalités sont toutes présentes dans le menu déroulant en haut à gauche (ou dans l'app barre en haut sur les petits écrans).
+Pour utiliser l'application, il suffit juste de s'y connecté, pas besoin de ressources extérieures pour l'utiliser. 2 évènements sont disponibles sur la journée du 29 avril, cliquez dessus afin de les ajoutez à votre programme. Les accès aux autres fonctionnalités sont toutes présentes dans le menu déroulant en haut à gauche (ou dans l'app barre en haut sur les plus grands écrans).
