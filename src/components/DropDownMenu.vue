@@ -51,7 +51,7 @@ export default {
       {
         title: "Copier le programme sur presse-papier",
         action: () => {
-          copyclipboard(JSON.stringify(FilterMyEvents(store.state.events)));
+          copyPlanning(JSON.stringify(FilterMyEvents(store.state.events)));
         },
       },
       {
@@ -169,7 +169,7 @@ function importPlanning() {
 }
 
 //Fonction pour copié dans le presse papier
-function copyclipboard(programmecopie) {
+function copyPlanning(programmecopie) {
   var dummy = document.createElement("textarea");
   document.body.appendChild(dummy);
   dummy.textContent = programmecopie;
