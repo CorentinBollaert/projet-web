@@ -43,9 +43,6 @@ export default {
       //   title: "Fullscreen",
       //   action: () => {
       //       document.getElementById("app").requestFullscreen();
-      //       // document
-      //       //   .getElementsByClassName("row fill-height")[0]
-      //       //   .requestFullscreen();
       //   },
       // },
       {
