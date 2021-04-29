@@ -13,7 +13,9 @@
           @click="item.action"
         >
           <v-list-item-action>
-            <v-list-item-title>{{ item.title }} {{ $store.state.myProgram }} </v-list-item-title>
+            <v-list-item-title
+              >{{ item.title }} {{ $store.state.myProgram }}
+            </v-list-item-title>
           </v-list-item-action>
         </v-list-item>
       </v-list>
@@ -22,9 +24,8 @@
 </template>
 
 <script>
-
-import store from '../store'
-import {FilterMyEvents} from '../Util'
+import store from "../store";
+import { FilterMyEvents } from "../Util";
 
 export default {
   data: () => ({
@@ -34,13 +35,16 @@ export default {
         action: () => {
           console.log("BTN1"),
             // document.getElementById("app").requestFullscreen();
-            document.getElementsByClassName("row fill-height")[0].requestFullscreen();
+            document
+              .getElementsByClassName("row fill-height")[0]
+              .requestFullscreen();
         },
       },
       {
         title: "Copier le programme sur presse-papier",
         action: () => {
-          console.log(FilterMyEvents(store.state.events)), copyclipboard(JSON.stringify(FilterMyEvents(store.state.events)));
+          console.log(FilterMyEvents(store.state.events)),
+            copyclipboard(JSON.stringify(FilterMyEvents(store.state.events)));
         },
       },
       {
@@ -52,7 +56,7 @@ export default {
       {
         title: "Importer un planning",
         action: () => {
-          console.log("BTN3");
+          console.log("BTN3"), importPlanning();
         },
       },
       {
@@ -70,6 +74,16 @@ export default {
     ],
   }),
 };
+
+function importPlanning() {
+  var planning = prompt("Entrez les données à importer", "Collez ici");
+
+  if (planning == null || planning == "") {
+    alert("Importation annulée");
+  } else {
+    console.log(planning);
+  }
+}
 
 //Fonction pour copié dans le presse papier
 function copyclipboard(programmecopie) {
