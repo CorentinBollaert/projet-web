@@ -44,13 +44,32 @@ export default {
           console.log("BTN3");
         },
       },
+      {
+        title: "Copier le programme",
+        action: () => {
+          console.log("BTN4"), copyclipboard("salut c'est zeldu");
+        },
+      },
     ],
   }),
 };
 
+//Fonction pour copié dans le presse papier
+function copyclipboard(programmecopie) {
+  var dummy = document.createElement("textarea");
+  document.body.appendChild(dummy);
+  dummy.textContent = programmecopie;
+  dummy.select();
+  document.execCommand("copy");
+  document.body.removeChild(dummy);
+}
+
+// Fonction de partage du programme
 function share() {
   if (!("share" in navigator)) {
-    alert("Web Share API not supported.");
+    alert(
+      "Web Share API non supporté sur votre navigateur, veuillez essayer avec un autre."
+    );
     return;
   }
 
