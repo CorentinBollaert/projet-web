@@ -1,7 +1,15 @@
 <template>
- 
-    <v-app-bar app color="primary" dark>
-      <!-- <div class="d-flex align-center">
+  <!--<v-app-bar app color="primary" dark> -->
+
+  <v-app-bar
+    app
+    color="#43a047"
+    dark
+    src="https://picsum.photos/1920/1080?random"
+    fade-img-on-scroll
+    scroll-target="#scrolling-techniques-5"
+  >
+    <!-- <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
           class="shrink mr-2"
@@ -21,31 +29,26 @@
         />
       </div> -->
 
+    <ToggleButton />
 
-      <ToggleButton/>
+    <v-spacer></v-spacer>
 
-      <v-spacer></v-spacer>
-
-      <DropDownMenu/>
-
-
-    </v-app-bar>
-
+    <DropDownMenu />
+  </v-app-bar>
 </template>
 
 <script>
-
 // import DropDownMenu from "./components/DropDownMenu";
-import DropDownMenu from './DropDownMenu.vue';
-import ToggleButton from './ToggleButton.vue';
+import DropDownMenu from "./DropDownMenu.vue";
+import ToggleButton from "./ToggleButton.vue";
 
 export default {
   components: { DropDownMenu, ToggleButton },
-  }
+};
 </script>
 
 <style>
-v-app-bar{
+v-app-bar {
   flex-direction: row;
   align-items: center;
 }
