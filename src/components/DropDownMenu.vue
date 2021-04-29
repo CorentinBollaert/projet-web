@@ -6,6 +6,7 @@
           Gérer mon planning
         </v-btn>
       </template>
+
       <v-list>
         <v-list-item
           v-for="(item, index) in items"
@@ -39,7 +40,6 @@
 
   </div>
 </template>
-
 <script>
 import store from "../store";
 import { FilterMyEvents } from "../Util";
@@ -78,13 +78,13 @@ export default {
       {
         title: "Importer un planning",
         action: () => {
-          console.log("BTN3"), importPlanning();
+          console.log("BTN3");
         },
       },
       {
         title: "Supprimer une categorie",
         action: () => {
-          console.log("BTN3");
+          console.log("BTN3"), deleteProg();
         },
       },
       {

@@ -12,7 +12,6 @@
 // import HelloWorld from "./components/HelloWorld";
 import Calendar from "./components/Calendar";
 import Entete from "./components/Entete";
-
 export default {
   name: "App",
 
@@ -24,6 +23,6 @@ export default {
 
   data: () => ({
     //
-  })
+  }),
 };
 </script>
