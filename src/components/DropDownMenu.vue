@@ -30,11 +30,17 @@ export default {
   data: () => ({
     items: [
       {
-        title: "Ajouter un élément",
+        title: "Fullscreen",
         action: () => {
           console.log("BTN1"),
             // document.getElementById("app").requestFullscreen();
             document.getElementsByClassName("row fill-height")[0].requestFullscreen();
+        },
+      },
+      {
+        title: "Copier le programme sur presse-papier",
+        action: () => {
+          console.log(FilterMyEvents(store.state.events)), copyclipboard(JSON.stringify(FilterMyEvents(store.state.events)));
         },
       },
       {
@@ -50,7 +56,7 @@ export default {
         },
       },
       {
-        title: "Supprimer un planning",
+        title: "Supprimer une categorie",
         action: () => {
           console.log("BTN3");
         },
@@ -58,13 +64,7 @@ export default {
       {
         title: "Aide",
         action: () => {
-          console.log(FilterMyEvents(store.state.events));
-        },
-      },
-      {
-        title: "Copier le programme",
-        action: () => {
-          console.log("BTN4"), copyclipboard("salut c'est zeldu");
+          console.log();
         },
       },
     ],
