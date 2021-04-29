@@ -1,13 +1,13 @@
 <template>
 
   <div class="text-center">
-          <!-- écran large -->
-
+    <!-- écran large -->
     <div id="dropdown-wide">
       <v-btn v-for="(item, index) in items"
           :key="index"
           @click="item.action"
-        >{{ item.title }}</v-btn>
+        >{{ item.title }}
+      </v-btn>
     </div>
     <div id="dropdown-small">
       <v-menu offset-y >
@@ -33,24 +33,6 @@
         
       </v-menu>
     </div>
-
-     <!-- Snackbar
-    <v-snackbar
-      v-model="snackbar.status"
-    >
-      {{ snackbar.text }}
-
-      <template v-slot:action="{ attrs }">
-        <v-btn
-          color="pink"
-          text
-          v-bind="attrs"
-          @click="snackbar.status = false"
-        >
-          Close
-        </v-btn>
-      </template>
-    </v-snackbar> -->
   </div>
 </template>
 <script>
@@ -60,20 +42,16 @@ import { FilterMyEvents } from "../Util";
 export default {
   components: {},
   data: () => ({
-    // snackbar : {
-    //   status : false,
-    //   text: `Hello, I'm a snackbar`,
-    // },
     items: [
-      {
-        title: "Fullscreen",
-        action: () => {
-            document.getElementById("app").requestFullscreen();
-            // document
-            //   .getElementsByClassName("row fill-height")[0]
-            //   .requestFullscreen();
-        },
-      },
+      // {
+      //   title: "Fullscreen",
+      //   action: () => {
+      //       document.getElementById("app").requestFullscreen();
+      //       // document
+      //       //   .getElementsByClassName("row fill-height")[0]
+      //       //   .requestFullscreen();
+      //   },
+      // },
       {
         title: "Copier le programme sur presse-papier",
         action: () => {
@@ -122,12 +100,12 @@ export default {
           );
         },
       },
-      {
-        title: "Aide",
-        action: () => {
-          console.log();
-        },
-      },
+      // {
+      //   title: "Aide",
+      //   action: () => {
+      //     console.log();
+      //   },
+      // },
     ],
   }),
 };
@@ -151,12 +129,10 @@ function deleteCategory() {
   }
 
   for (let i = 0; i < store.state.categories.length; i++) {
-    // console.log(store.state.events.category.toLowerCase() == CategoryName.toLowerCase());
     if (store.state.categories[i]?.toLowerCase() != CategoryName.toLowerCase()) {
       categoryCopy.push(store.state.categories[i])
     } 
   }
-
   store.state.events = eventCopy;
   store.state.categories = categoryCopy;
 }
@@ -192,7 +168,6 @@ function importPlanning() {
     });
   });
 }
-
 
 //Fonction pour copié dans le presse papier
 function copyclipboard(programmecopie) {

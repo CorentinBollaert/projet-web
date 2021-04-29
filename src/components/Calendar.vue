@@ -12,7 +12,7 @@
             color="grey darken-2"
             @click="setToday"
           >
-            Today
+            Aujourd'hui
           </v-btn>
           <v-btn
             fab
