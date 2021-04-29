@@ -1,24 +1,38 @@
 <template>
-  <div class="text-center">
-    <v-menu offset-y>
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn color="primary" dark v-bind="attrs" v-on="on">
-          Gérer mon planning
-        </v-btn>
-      </template>
 
-      <v-list>
-        <v-list-item
-          v-for="(item, index) in items"
+  <div class="text-center">
+          <!-- écran large -->
+
+    <div id="dropdown-wide">
+      <v-btn v-for="(item, index) in items"
           :key="index"
           @click="item.action"
-        >
-          <v-list-item-action>
-            <v-list-item-title>{{ item.title }} </v-list-item-title>
-          </v-list-item-action>
-        </v-list-item>
-      </v-list>
-    </v-menu>
+        >{{ item.title }}</v-btn>
+    </div>
+    <div id="dropdown-small">
+      <v-menu offset-y >
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn color="primary" dark v-bind="attrs" v-on="on">
+            Gérer mon planning
+          </v-btn>
+        </template>
+
+        <!-- écran étroit -->
+
+        <v-list>
+          <v-list-item
+            v-for="(item, index) in items"
+            :key="index"
+            @click="item.action"
+          >
+            <v-list-item-action>
+              <v-list-item-title>{{ item.title }} </v-list-item-title>
+            </v-list-item-action>
+          </v-list-item>
+        </v-list>
+        
+      </v-menu>
+    </div>
 
      <!-- Snackbar
     <v-snackbar
@@ -56,10 +70,10 @@ export default {
       {
         title: "Fullscreen",
         action: () => {
-            // document.getElementById("app").requestFullscreen();
-            document
-              .getElementsByClassName("row fill-height")[0]
-              .requestFullscreen();
+            document.getElementById("app").requestFullscreen();
+            // document
+            //   .getElementsByClassName("row fill-height")[0]
+            //   .requestFullscreen();
         },
       },
       {
@@ -83,7 +97,7 @@ export default {
       {
         title: "Supprimer une categorie",
         action: () => {
-          console.log("BTN3"), deleteProg();
+          // deleteCategory();
         },
       },
       {
@@ -148,8 +162,8 @@ function importPlanning() {
           category: CategoryName
       });
   });
-
 }
+
 
 //Fonction pour copié dans le presse papier
 function copyclipboard(programmecopie) {
