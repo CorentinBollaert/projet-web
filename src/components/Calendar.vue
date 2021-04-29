@@ -50,10 +50,9 @@
           color="primary"
           type="category"
           category-show-all
-          :categories="categories"
-          :events="events"
+          :categories="this.$store.state.categories"
+          :events="this.$store.state.events"
           :event-color="getEventColor"
-          @change="fetchEvents"
           @click:event="dateClick"
         ></v-calendar>
       </v-sheet>
@@ -61,42 +60,21 @@
   </v-row>
 </template>
 <script>
+
+import store from '../store'
+
+          // @change="fetchEvents"
+
   export default {
     data: () => ({
       focus: '',
-      events: [
-        {
-          name: "Test",
-          start: '2021-04-25 09:00',
-          end: '2021-04-25 13:00',
-          color: "blue",
-          category: 'HellFest',
-          // action: ()=> this.events.push({
-          //   name: this.name,
-          //   start: this.start,
-          //   end: this.end,
-          //   color: this.color,
-          //   category: 'Mon Programme',
-          // })
-        },
-         {
-          name: "Test2",
-          start: '2021-04-25 12:00',
-          end: '2021-04-25 14:00',
-          color: "blue",
-          category: 'HellFest',
-        }
-      ],
-      // colors: ['blue', 'indigo', 'deep-purple', 'cyan', 'green', 'orange', 'grey darken-1'],
-      // names: ['Meeting', 'Holiday', 'PTO', 'Travel', 'Event', 'Birthday', 'Conference', 'Party'],
-      // // categories: ['John Smith', 'Tori Walker'],
-      categories: ['Mon Programme', 'HellFest'],
     }),
     
     mounted () {
       this.$refs.calendar.checkChange()
     },
     methods: {
+      
       getEventColor (event) {
         return event.color
       },
@@ -110,18 +88,19 @@
         this.$refs.calendar.next()
       },
       dateClick (item) {
-        for (let i = 0; i < this.events.length; i++) {
+
+        for (let i = 0; i < store.state.events.length; i++) {
           // Si l'évènement sélectionné est déja enregistré dans mon programme
-          if (this.events[i].name == item.event.name && this.events[i].category.includes("Mon Programme")) {
+          if (store.state.events[i].name == item.event.name && store.state.events[i].category.includes("Mon Programme")) {
             // Si l'évènement est selectionné depuis mon programme, je le retire
             if(item.event.category.includes("Mon Programme")){
-              this.events.splice(i,1);
+              store.state.events.splice(i,1);
             }
             return;
           }   
         };
 
-        this.events.push({
+        store.state.events.push({
             name: item.event.name ,
             start: item.event.start,
             end: item.event.end,

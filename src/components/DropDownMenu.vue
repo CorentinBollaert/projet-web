@@ -13,7 +13,7 @@
           @click="item.action"
         >
           <v-list-item-action>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
+            <v-list-item-title>{{ item.title }} {{ $store.state.myProgram }} </v-list-item-title>
           </v-list-item-action>
         </v-list-item>
       </v-list>
@@ -22,6 +22,10 @@
 </template>
 
 <script>
+
+import store from '../store'
+import {FilterMyEvents} from '../Util'
+
 export default {
   data: () => ({
     items: [
@@ -29,7 +33,8 @@ export default {
         title: "Ajouter un élément",
         action: () => {
           console.log("BTN1"),
-            document.getElementById("app").requestFullscreen();
+            // document.getElementById("app").requestFullscreen();
+            document.getElementsByClassName("row fill-height")[0].requestFullscreen();
         },
       },
       {
@@ -39,9 +44,21 @@ export default {
         },
       },
       {
-        title: "Importer un planning (NFC)",
+        title: "Importer un planning",
         action: () => {
           console.log("BTN3");
+        },
+      },
+      {
+        title: "Supprimer un planning",
+        action: () => {
+          console.log("BTN3");
+        },
+      },
+      {
+        title: "Aide",
+        action: () => {
+          console.log(FilterMyEvents(store.state.events));
         },
       },
       {

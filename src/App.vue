@@ -1,7 +1,6 @@
 <template>
   <v-app>
     <v-main>
-      
       <Entete />
       <Calendar />
       <!-- <HelloWorld /> -->
@@ -25,6 +24,6 @@ export default {
 
   data: () => ({
     //
-  }),
+  })
 };
 </script>
