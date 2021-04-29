@@ -20,7 +20,7 @@
       </v-list>
     </v-menu>
 
-     <!-- Snackbar
+    <!-- Snackbar
     <v-snackbar
       v-model="snackbar.status"
     >
@@ -37,7 +37,6 @@
         </v-btn>
       </template>
     </v-snackbar> -->
-
   </div>
 </template>
 <script>
@@ -45,8 +44,7 @@ import store from "../store";
 import { FilterMyEvents } from "../Util";
 
 export default {
-    components: {
-    },
+  components: {},
   data: () => ({
     // snackbar : {
     //   status : false,
@@ -56,10 +54,10 @@ export default {
       {
         title: "Fullscreen",
         action: () => {
-            // document.getElementById("app").requestFullscreen();
-            document
-              .getElementsByClassName("row fill-height")[0]
-              .requestFullscreen();
+          // document.getElementById("app").requestFullscreen();
+          document
+            .getElementsByClassName("row fill-height")[0]
+            .requestFullscreen();
         },
       },
       {
@@ -89,15 +87,25 @@ export default {
       {
         title: "Enregistrer localement",
         action: () => {
-          window.localStorage.setItem("localStorageEvents", JSON.stringify(store.state.events));
-          window.localStorage.setItem("localStorageEventsCategory", JSON.stringify(store.state.categories));
+          window.localStorage.setItem(
+            "localStorageEvents",
+            JSON.stringify(store.state.events)
+          );
+          window.localStorage.setItem(
+            "localStorageEventsCategory",
+            JSON.stringify(store.state.categories)
+          );
         },
       },
       {
         title: "Charger localement",
         action: () => {
-          store.state.events = JSON.parse(window.localStorage.getItem("localStorageEvents"));
-          store.state.categories = JSON.parse(window.localStorage.getItem("localStorageEventsCategory"));
+          store.state.events = JSON.parse(
+            window.localStorage.getItem("localStorageEvents")
+          );
+          store.state.categories = JSON.parse(
+            window.localStorage.getItem("localStorageEventsCategory")
+          );
         },
       },
       {
@@ -119,36 +127,52 @@ export default {
 
 //   store.state.events.forEach(e => {
 //     if (e.category.tolower()) {
-      
+
 //     }
 //   });
 
-function importPlanning() {
+function deleteProg() {
+  var CategoryNumber = prompt(
+    "Quelle catégorie souhaitez vous supprimez ?",
+    "1, 2, 3"
+  );
 
-  var CategoryName = prompt("Entrez le nom de la nouvelle catégorie à importer", "Nom de la catégorie");
+  if (CategoryNumber == null || CategoryNumber == "") {
+    alert("User cancelled the prompt.");
+  } else {
+    console.log("Supprimer la catégorie " + CategoryNumber);
+  }
+}
+function importPlanning() {
+  var CategoryName = prompt(
+    "Entrez le nom de la nouvelle catégorie à importer",
+    "Nom de la catégorie"
+  );
 
   if (CategoryName == null || planning == "") {
-      return;
+    return;
   }
 
-  var planning = prompt("Entrez les données à importer", "Collez ici au format JSON");
+  var planning = prompt(
+    "Entrez les données à importer",
+    "Collez ici au format JSON"
+  );
 
   if (planning == null || planning == "") {
     return;
   }
-  var parsedPlanning = JSON.parse(planning)
-  store.state.categories.push(CategoryName)
+  var parsedPlanning = JSON.parse(planning);
+  store.state.categories.push(CategoryName);
 
-  parsedPlanning.forEach(e => {
-      store.state.events.push({
-          name: e.name ,
-          start: e.start,
-          end: e.end,
-          color: e.color,
-          category: CategoryName
-      });
+  parsedPlanning.forEach((e) => {
+    store.state.events.push({
+      name: e.name,
+      start: e.start,
+      end: e.end,
+      color: e.color,
+      category: CategoryName,
+    });
   });
-
 }
 
 //Fonction pour copié dans le presse papier
