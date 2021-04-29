@@ -40,18 +40,24 @@
 <script>
 // import DropDownMenu from "./components/DropDownMenu";
 import DropDownMenu from "./DropDownMenu.vue";
-import ToggleButton from "./ToggleButton.vue";
-
 export default {
-  components: { DropDownMenu, ToggleButton },
+  components: { DropDownMenu },
 };
 </script>
 
 <style>
-@media (max-width: 640px)  {
-  .text-center {
+@media (min-width: 1850px)  {
+  #dropdown-small {
     display: none;
-    background-color: red;
+  }
+  .v-app-bar.v-app-bar--fixed{
+    display: flex;
+    justify-content: center;
+  }
+}
+@media (max-width: 1850px)  {
+  #dropdown-wide {
+    display: none;
   }
 }
 
