@@ -95,7 +95,7 @@ export default {
       {
         title: "Supprimer une categorie",
         action: () => {
-          // deleteCategory();
+          deleteCategory();
         },
       },
       {
@@ -132,31 +132,35 @@ export default {
   }),
 };
 
-// function supprimerCategory() {
-//   var categoryName = prompt("Entrez les données à importer", "Collez ici au format JSON");
-
-//   if (categoryName == null || categoryName == "") {
-//     return;
-//   }
-
-//   store.state.events.forEach(e => {
-//     if (e.category.tolower()) {
-
-//     }
-//   });
-
-function deleteProg() {
-  var CategoryNumber = prompt(
+function deleteCategory() {
+  var CategoryName= prompt(
     "Quelle catégorie souhaitez vous supprimez ?",
-    "1, 2, 3"
   );
 
-  if (CategoryNumber == null || CategoryNumber == "") {
-    alert("User cancelled the prompt.");
-  } else {
-    console.log("Supprimer la catégorie " + CategoryNumber);
+  if (CategoryName == null || CategoryName == "") {
+    return;
   }
+
+  var eventCopy = []
+  var categoryCopy = []
+
+  for (let i = 0; i < store.state.events.length; i++) {
+    if (store.state.events[i].category?.toLowerCase() != CategoryName.toLowerCase()) {
+      eventCopy.push(store.state.events[i])
+    } 
+  }
+
+  for (let i = 0; i < store.state.categories.length; i++) {
+    // console.log(store.state.events.category.toLowerCase() == CategoryName.toLowerCase());
+    if (store.state.categories[i]?.toLowerCase() != CategoryName.toLowerCase()) {
+      categoryCopy.push(store.state.categories[i])
+    } 
+  }
+
+  store.state.events = eventCopy;
+  store.state.categories = categoryCopy;
 }
+
 function importPlanning() {
   var CategoryName = prompt(
     "Entrez le nom de la nouvelle catégorie à importer",
