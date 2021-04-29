@@ -13,13 +13,30 @@
           @click="item.action"
         >
           <v-list-item-action>
-            <v-list-item-title
-              >{{ item.title }} {{ $store.state.myProgram }}
-            </v-list-item-title>
+            <v-list-item-title>{{ item.title }} </v-list-item-title>
           </v-list-item-action>
         </v-list-item>
       </v-list>
     </v-menu>
+
+     <!-- Snackbar
+    <v-snackbar
+      v-model="snackbar.status"
+    >
+      {{ snackbar.text }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="pink"
+          text
+          v-bind="attrs"
+          @click="snackbar.status = false"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar> -->
+
   </div>
 </template>
 
@@ -28,7 +45,13 @@ import store from "../store";
 import { FilterMyEvents } from "../Util";
 
 export default {
+    components: {
+    },
   data: () => ({
+    // snackbar : {
+    //   status : false,
+    //   text: `Hello, I'm a snackbar`,
+    // },
     items: [
       {
         title: "Fullscreen",
@@ -43,8 +66,7 @@ export default {
       {
         title: "Copier le programme sur presse-papier",
         action: () => {
-          console.log(FilterMyEvents(store.state.events)),
-            copyclipboard(JSON.stringify(FilterMyEvents(store.state.events)));
+          copyclipboard(JSON.stringify(FilterMyEvents(store.state.events)));
         },
       },
       {
@@ -75,14 +97,45 @@ export default {
   }),
 };
 
+// function supprimerCategory() {
+//   var categoryName = prompt("Entrez les données à importer", "Collez ici au format JSON");
+
+//   if (categoryName == null || categoryName == "") {
+//     return;
+//   }
+
+//   store.state.events.forEach(e => {
+//     if (e.category.tolower()) {
+      
+//     }
+//   });
+
 function importPlanning() {
-  var planning = prompt("Entrez les données à importer", "Collez ici");
+
+  var CategoryName = prompt("Entrez le nom de la nouvelle catégorie à importer", "Nom de la catégorie");
+
+  if (CategoryName == null || planning == "") {
+      return;
+  }
+
+  var planning = prompt("Entrez les données à importer", "Collez ici au format JSON");
 
   if (planning == null || planning == "") {
-    alert("Importation annulée");
-  } else {
-    console.log(planning);
+    return;
   }
+  var parsedPlanning = JSON.parse(planning)
+  store.state.categories.push(CategoryName)
+
+  parsedPlanning.forEach(e => {
+      store.state.events.push({
+          name: e.name ,
+          start: e.start,
+          end: e.end,
+          color: e.color,
+          category: CategoryName
+      });
+
+  });
 }
 
 //Fonction pour copié dans le presse papier

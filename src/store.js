@@ -31,8 +31,19 @@ const state = {
     }
 
 const mutations = {
-    updateProgram (state, payload) {
+    updateProgram (payload) {
         state.events = payload
+    },
+    importProgram(name, events){
+        events.map(e => {
+            state.events.push({
+                name: e.name ,
+                start: e.start,
+                end: e.end,
+                color: e.color,
+                category: name
+            });
+        })
     }}
 
     
