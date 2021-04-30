@@ -43,4 +43,5 @@ Le menu d'en-tête prend la forme d'un drop-down lorsque la taille horizontale d
 Les composants de l'applications ont été réalisée dans un fichier à part quand cela était judiscieux
 ### ```Compatibilité :```
 Cette application est entièrement supporté par Chrome.
-Seule la fonctionnalitée d'envois de mail à ses contact n'est pas supporté par Firefox
+Seule la fonctionnalité d'envois de mail à ses contact n'est pas supporté par Firefox
+Lien Netlify : https://pwa-calendar-project.netlify.app/
